@@ -24,6 +24,7 @@ public class Driver extends BaseModel {
 
     @Column(nullable = false,unique = true)
     private String licenceNumber;
+
     @OneToOne(mappedBy = "driver",cascade =CascadeType.ALL)
     private Car car;
 
@@ -36,10 +37,14 @@ public class Driver extends BaseModel {
     @OneToOne
     private ExactLocation home;
 
+
     private String activeCity;
+
     @DecimalMin(value = "0.00",message = "Rating must be greater than or equal to 0")
     @DecimalMax(value="5.00",message = "Rating must be less than or equal to 5")
     private double rating;
+
+    private Boolean isAvailable;
 
     @OneToMany(mappedBy = "driver",fetch = FetchType.LAZY)
     @Fetch(FetchMode.SUBSELECT)
